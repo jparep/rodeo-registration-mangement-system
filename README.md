@@ -43,8 +43,8 @@ The Rodeo Registration System is a web application designed to manage rodeo seri
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/rodeo-registration-system.git
-    cd rodeo-registration-system
+    git clone https://github.com/japrep/rodeo-app.git
+    cd rodeo-app
     ```
 
 2. **Create a virtual environment:**
@@ -133,4 +133,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-For any questions or feedback, please open an issue on GitHub or contact the project maintainer at [email@example.com](mailto:email@example.com).
+For any questions or feedback, please open an issue on GitHub or contact the project maintainer at [contact@joshuaparep.com](mailto:contact@joshuaparep.com).
