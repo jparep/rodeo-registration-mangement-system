@@ -1,7 +1,11 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Series, Rodeo, Contestant, ContestRodeoSeries, Event, ContestEvent, EventPartner, MensBreakaway
-from .serializers import SeriesSerializer, RodeoSerializer, ContestantSerializer, ContestRodeoSeriesSerializer, EventSerializer, ContestEventSerializer, EventPartnerSerializer, MensBreakawaySerializer
+from .serializers import SeriesSerializer, RodeoSerializer, ContestantSerializer, ContestRodeoSeriesSerializer, EventSerializer, EventPartnerSerializer, ContestEventSerializer, MensBreakawaySerializer
+
+def home(request):
+    return HttpResponse("Welcome to the Rodeo Registration System API")
 
 class SeriesViewSet(viewsets.ModelViewSet):
     queryset = Series.objects.all()
