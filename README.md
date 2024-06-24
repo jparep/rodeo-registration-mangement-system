@@ -46,8 +46,8 @@ This project is designed to facilitate the registration and management of contes
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/rodeo-registration-system.git
-    cd rodeo-registration-system
+    git clone https://github.com/jparep/rodeo-app.git
+    cd rodeo-app
     ```
 
 2. **Create and activate a virtual environment:**
