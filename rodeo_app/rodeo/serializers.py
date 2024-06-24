@@ -24,4 +24,14 @@ class ContestRodeoSeriesSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = '__all__'    
+        fields = '__all__'   
+
+class ContestEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContestEvent
+        fields = '__all__'
+
+class EventPartnerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventPartner
+        fields = '__all__'
