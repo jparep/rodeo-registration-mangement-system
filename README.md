@@ -1,144 +1,136 @@
 # Rodeo Registration System
 
-The Rodeo Registration System is a comprehensive application to manage series, rodeos, contestants, events, and results for rodeo competitions. This system was initially developed as a desktop application using PyQt6 and has now been migrated to a web application using Django and Django REST Framework.
+The Rodeo Registration System is a web application designed to manage rodeo series, rodeo events, and contestant registrations efficiently. This application is built using Django for the backend and is designed with a focus on maintainability, scalability, and user-friendliness.
 
 ## Table of Contents
 
-1. [Project Overview](#project-overview)
-2. [Features](#features)
-3. [Tech Stack](#tech-stack)
-4. [Setup Instructions](#setup-instructions)
-5. [API Endpoints](#api-endpoints)
-6. [Database Schema](#database-schema)
-7. [Security and Privacy](#security-and-privacy)
-8. [Contributing](#contributing)
-9. [License](#license)
-
-## Project Overview
-
-This project is designed to facilitate the registration and management of contestants in various rodeo events. It includes functionality for creating series, rodeos, contestants, and events, and for mapping contestants to specific events within rodeos.
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup and Installation](#setup-and-installation)
+- [Database Schema](#database-schema)
+- [Models Overview](#models-overview)
+- [Usage](#usage)
+- [Security and Privacy](#security-and-privacy)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
-- CRUD operations for Series, Rodeo, Contestant, and Event
-- Unique constraint enforcement for contestant-event mappings
-- Partner management for team events
-- API for fetching, creating, updating, and deleting records
-- Web-based user interface for easy management
+- Manage series, rodeos, contestants, and events
+- Register contestants for specific events
+- Ensure unique contestant-event combinations
+- Handle partner events with validation for different partners
+- Generate reports and summaries
+- User-friendly interface
 
-## Tech Stack
+## Technologies Used
 
-- Backend: Django, Django REST Framework
-- Database: SQLite (can be switched to PostgreSQL or MySQL for production)
-- Frontend: HTML, CSS, JavaScript (integrated with Django templates)
-- Deployment: Docker, Gunicorn, Nginx (for production)
+- **Backend:** Django
+- **Database:** SQLite (development), PostgreSQL/MySQL (production)
+- **Frontend:** Django Templates (extendable to React.js)
+- **Others:** UUID for event IDs, Check Constraints for data integrity
 
-## Setup Instructions
+## Setup and Installation
 
 ### Prerequisites
 
 - Python 3.8+
-- Django 4.0+
-- Docker (for deployment)
+- pip (Python package installer)
+- Virtualenv (optional but recommended)
 
-### Local Development Setup
+### Installation Steps
 
 1. **Clone the repository:**
-
     ```bash
-    git clone https://github.com/jparep/rodeo-app.git
+    git clone https://github.com/japrep/rodeo-app.git
     cd rodeo-app
     ```
 
-2. **Create and activate a virtual environment:**
-
+2. **Create a virtual environment:**
     ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    python -m venv env
+    source env/bin/activate  # On Windows use `env\Scripts\activate`
     ```
 
-3. **Install dependencies:**
-
+3. **Install the dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Apply migrations:**
-
+4. **Apply database migrations:**
     ```bash
     python manage.py migrate
     ```
 
 5. **Run the development server:**
-
     ```bash
     python manage.py runserver
     ```
 
 6. **Access the application:**
-   
-    Open your browser and navigate to `http://127.0.0.1:8000`.
-
-### Docker Setup
-
-1. **Build the Docker image:**
-
-    ```bash
-    docker build -t rodeo-registration-system .
-    ```
-
-2. **Run the Docker container:**
-
-    ```bash
-    docker run -d -p 8000:8000 rodeo-registration-system
-    ```
-
-3. **Access the application:**
-   
-    Open your browser and navigate to `http://127.0.0.1:8000`.
-
-## API Endpoints
-
-The application exposes several API endpoints for CRUD operations. Below are some examples:
-
-- `GET /api/series/` - List all series
-- `POST /api/series/` - Create a new series
-- `GET /api/series/:id/` - Retrieve a specific series
-- `PUT /api/series/:id/` - Update a specific series
-- `DELETE /api/series/:id/` - Delete a specific series
-
-Refer to the [API documentation](api_docs.md) for a complete list of endpoints and their usage.
+    Open your web browser and navigate to `http://localhost:8000`
 
 ## Database Schema
 
-The database schema follows the provided structure. Below is a summary of the models:
+The application uses a relational database with the following schema:
 
-- **Series**: Stores series information
-- **Rodeo**: Stores rodeo information
-- **Contestant**: Stores contestant information
-- **ContestRodeoSeries**: Maps contestants to rodeo series
-- **Event**: Stores event information
-- **ContestEvent**: Maps contested events to rodeo series
-- **EventPartner**: Stores partner event information
-- **MensBreakaway**: Stores men's breakaway frequency in events
+![Database Schema](docs/database_schema.png)
+
+## Models Overview
+
+- **Series**: Represents a rodeo series.
+- **Rodeo**: Represents a rodeo event.
+- **Contestant**: Represents a contestant.
+- **ContestRodeoSeries**: Maps contestants to specific rodeo series.
+- **Event**: Represents an event within a rodeo.
+- **ContestEvent**: Maps contested events to rodeo series.
+- **EventPartner**: Maps partner information for specific events.
+- **MensBreakawayNumber**: Stores the number of breakaway entries for men's events.
+
+## Usage
+
+1. **Manage Series, Rodeos, and Events:**
+   - Add, update, or delete series, rodeos, and events via the admin interface or dedicated views.
+
+2. **Register Contestants:**
+   - Register contestants for events, ensuring unique combinations and handling partner events appropriately.
+
+3. **Generate Reports:**
+   - Access various reports and summaries to track contestant participation and event statistics.
 
 ## Security and Privacy
 
-- **Authentication**: Ensure all API endpoints are secured using Django's authentication system.
-- **Authorization**: Implement permission checks to ensure users can only access and modify allowed data.
-- **Data Integrity**: Use database constraints and application logic to maintain data consistency.
-- **Data Privacy**: Follow GDPR and other relevant regulations to protect user data.
+- **Authentication and Authorization:**
+  - Ensure that sensitive actions are protected by proper authentication and authorization mechanisms.
+  - Use Django's built-in User and Group models to manage permissions.
+
+- **Data Integrity:**
+  - Utilize database constraints (e.g., unique constraints, check constraints) to maintain data integrity.
+  - Regularly back up the database and use secure storage solutions.
+
+- **Privacy:**
+  - Handle personal data in compliance with relevant data protection regulations (e.g., GDPR).
+  - Ensure secure storage and transmission of sensitive data.
+
+## Documentation
+
+- **Code Documentation:**
+  - Inline comments and docstrings are used extensively throughout the codebase.
+  - Follow PEP 8 style guidelines.
+
+- **User Documentation:**
+  - Detailed user guides and FAQs are available in the `docs` directory.
+  - API documentation is generated using tools like Django REST framework's built-in documentation generator.
 
 ## Contributing
 
-We welcome contributions from the community. Please follow the guidelines below:
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature-name`)
-3. Commit your changes (`git commit -am 'Add a new feature'`)
-4. Push to the branch (`git push origin feature/your-feature-name`)
-5. Create a new Pull Request
+We welcome contributions from the community! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to get involved.
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+For any questions or feedback, please open an issue on GitHub or contact the project maintainer at [contact@joshuaparep.com](mailto:contact@joshuaparep.com).
