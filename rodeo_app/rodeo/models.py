@@ -36,4 +36,6 @@ class EventPartner(models.Model):
         constrains = [
             models.CheckConstraint(check=~models.Q(partner_one=models.F('partner-two')), name='check_different_partners')
         ]
-    
+class MensBreakaway(models.Model):
+    contested_event_id = models.ForeignKey(ContestEvent, on_delete=models.CASCADE)
+    mb_number = models.IntegerField()
