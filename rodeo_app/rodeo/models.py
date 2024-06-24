@@ -4,19 +4,20 @@ import uuid
 # Create your models here.
 class Series(models.Model):
     series_name = models.CharField(max_length=50)
-    
+
 class Rodeo(models.Model):
     rodeo_name = models.CharField(max_length=50)
 
 class Contestant(models.Model):
     contestant_name = models.CharField(max_length=100)
-    
+
 class ContestRodeoSeries(models.Model):
-    contstant = models.ForeignKey(Contestant, on_delete=models.CASCADE)
+    contestant = models.ForeignKey(Contestant, on_delete=models.CASCADE)
     rodeo = models.ForeignKey(Rodeo, on_delete=models.CASCADE)
     series = models.ForeignKey(Series, on_delete=models.CASCADE)
+
     class Meta:
-        unique_together = ('contestant', 'rodeo', 'sereis')
+        unique_together = ('contestant', 'rodeo', 'series')
 
 class Event(models.Model):
     event_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -24,18 +25,19 @@ class Event(models.Model):
     is_timed = models.BooleanField()
 
 class ContestEvent(models.Model):
-    contest_rodeo_series_id = models.ForeignKey(ContestRodeoSeries, on_delete=models.CASCADE)
-    event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
+    contest_rodeo_series = models.ForeignKey(ContestRodeoSeries, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
 class EventPartner(models.Model):
-    contest_event_id = models.ForeignKey(ContestEvent, on_delete=models.CASCADE)
+    contest_event = models.ForeignKey(ContestEvent, on_delete=models.CASCADE)
     partner_one = models.ForeignKey(Contestant, related_name='partner_one', on_delete=models.CASCADE)
-    partner_two = models.ForeignKey(Contestant, related_name="partner_one", on_delete=models.CASCADE)
-    
+    partner_two = models.ForeignKey(Contestant, related_name='partner_two', on_delete=models.CASCADE)
+
     class Meta:
-        constrains = [
-            models.CheckConstraint(check=~models.Q(partner_one=models.F('partner-two')), name='check_different_partners')
+        constraints = [
+            models.CheckConstraint(check=~models.Q(partner_one=models.F('partner_two')), name='check_different_partners')
         ]
+
 class MensBreakaway(models.Model):
-    contested_event_id = models.ForeignKey(ContestEvent, on_delete=models.CASCADE)
+    contest_event = models.ForeignKey(ContestEvent, on_delete=models.CASCADE)
     mb_number = models.IntegerField()
