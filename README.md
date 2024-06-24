@@ -41,35 +41,54 @@ The Rodeo Registration System is a web application designed to manage rodeo seri
 
 ### Installation Steps
 
-1. **Clone the repository:**
+1. Clone the repository:
     ```bash
-    git clone https://github.com/japrep/rodeo-app.git
-    cd rodeo-app
+    git clone <repository-url>
+    cd project_root
     ```
 
-2. **Create a virtual environment:**
+2. Create and activate a virtual environment:
     ```bash
-    python -m venv env
-    source env/bin/activate  # On Windows use `env\Scripts\activate`
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
-3. **Install the dependencies:**
+3. Install dependencies:
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Apply database migrations:**
+4. Configure the database in `rodeo_app/settings.py`:
+    ```python
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': '<your-database-name>',
+            'USER': '<your-database-user>',
+            'PASSWORD': '<your-database-password>',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+    ```
+
+5. Run database migrations:
     ```bash
     python manage.py migrate
     ```
 
-5. **Run the development server:**
+6. Create a superuser for the admin interface:
+    ```bash
+    python manage.py createsuperuser
+    ```
+
+7. Start the development server:
     ```bash
     python manage.py runserver
     ```
 
-6. **Access the application:**
-    Open your web browser and navigate to `http://localhost:8000`
+8. Access the API at `http://127.0.0.1:8000/api/` and the admin interface at `http://127.0.0.1:8000/admin/`.
+
 
 ## Database Schema
 
