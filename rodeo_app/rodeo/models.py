@@ -31,3 +31,9 @@ class EventPartner(models.Model):
     contest_event_id = models.ForeignKey(ContestEvent, on_delete=models.CASCADE)
     partner_one = models.ForeignKey(Contestant, related_name='partner_one', on_delete=models.CASCADE)
     partner_two = models.ForeignKey(Contestant, related_name="partner_one", on_delete=models.CASCADE)
+    
+    class Meta:
+        constrains = [
+            models.CheckConstraint(check=~models.Q(partner_one=models.F('partner-two')), name='check_different_partners')
+        ]
+    
