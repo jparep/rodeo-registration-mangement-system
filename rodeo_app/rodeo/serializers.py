@@ -11,7 +11,7 @@ class RodeoSerializer(serializers.ModelSerializer):
         model = Rodeo
         fields = '__all__'
 
-class ContestantSerializer(serializers.ModelSerializer):  # Fixed typo
+class ContestantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contestant
         fields = '__all__'

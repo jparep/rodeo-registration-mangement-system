@@ -1,7 +1,6 @@
 from django.db import models
 import uuid
 
-# Create your models here.
 class Series(models.Model):
     series_name = models.CharField(max_length=50)
 
@@ -20,7 +19,7 @@ class ContestRodeoSeries(models.Model):
         unique_together = ('contestant', 'rodeo', 'series')
 
 class Event(models.Model):
-    event = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    event_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     event_name = models.CharField(max_length=50)
     is_timed = models.BooleanField()
 

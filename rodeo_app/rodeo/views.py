@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Series, Rodeo, Contestant, ContestRodeoSeries, Event, ContestEvent, EventPartner, MensBreakaway
-from .serializers import SeriesSerializer, RodeoSerializer, ContestantSerializer, ContestRodeoSeriesSerializer, EventSerializer, EventPartnerSerializer, ContestEventSerializer, MensBreakawaySerializer
+from .serializers import SeriesSerializer, RodeoSerializer, ContestantSerializer, ContestRodeoSeriesSerializer, EventSerializer, ContestEventSerializer, EventPartnerSerializer, MensBreakawaySerializer
 
 class SeriesViewSet(viewsets.ModelViewSet):
     queryset = Series.objects.all()
