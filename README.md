@@ -1,4 +1,4 @@
-# Rodeo Registration App
+# Rodeo Registration Management System
  This is a Django-based web application for managing rodeo events and contestatns. 
 
  ## Table of Contents
