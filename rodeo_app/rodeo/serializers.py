@@ -35,3 +35,8 @@ class EventPartnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventPartner
         fields = '__all__'
+
+class MensBreakawaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MensBreakaway
+        fields = '__all__'
