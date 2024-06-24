@@ -23,6 +23,8 @@ The Rodeo Registration System is a web application designed to manage rodeo seri
 - Handle partner events with validation for different partners
 - Generate reports and summaries
 - User-friendly interface
+- RESTful API for CRUD operations on all models.
+- Admin interface for managing all records.
 
 ## Technologies Used
 
@@ -36,8 +38,9 @@ The Rodeo Registration System is a web application designed to manage rodeo seri
 ### Prerequisites
 
 - Python 3.8+
-- pip (Python package installer)
-- Virtualenv (optional but recommended)
+- Django 3.2+
+- Django REST Framework
+- PostgreSQL (or any other preferred database)
 
 ### Installation Steps
 
