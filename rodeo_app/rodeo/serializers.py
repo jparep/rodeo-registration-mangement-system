@@ -3,7 +3,7 @@ from .models import Series, Rodeo, Contestant, ContestRodeoSeries, Event, Contes
 
 class SeriesSerializer(serializers.ModelSerializer):
     class Meta:
-        module = Series
+        model = Series
         fields = '__all__'
 
 class RodeoSerializer(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class RodeoSerializer(serializers.ModelSerializer):
         model = Rodeo
         fields = '__all__'
 
-class ContestantSerialzier(serializers.ModelSerializer):
+class ContestantSerializer(serializers.ModelSerializer):  # Fixed typo
     class Meta:
         model = Contestant
         fields = '__all__'
