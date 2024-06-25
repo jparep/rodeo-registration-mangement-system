@@ -24,3 +24,29 @@ media
 
 # macOS
 .DS_Store
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React build output
+build/
+
+# Logs
+logs/
+*.log
+
+# Static files
+staticfiles/
+static/
+
+# dotenv environment variables file
+.env
+
+# IDEs and editors
+.idea/
+
+# System files
+Thumbs.db

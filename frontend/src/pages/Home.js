@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import RodeoForm from '../components/RodeoForm';
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -17,6 +18,7 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to the Rodeo Registration System</h1>
+      <RodeoForm />
       <ul>
         {data.map(item => (
           <li key={item.id}>{item.series_name}</li>

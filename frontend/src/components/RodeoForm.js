@@ -20,10 +20,10 @@ const RodeoForm = () => {
 
   useEffect(() => {
     // Fetch existing data for dropdowns
-    axios.get('/api/series/').then(response => setSeries(response.data));
-    axios.get('/api/rodeo/').then(response => setRodeos(response.data));
-    axios.get('/api/contestants/').then(response => setContestants(response.data));
-    axios.get('/api/events/').then(response => setEvents(response.data));
+    axios.get('http://127.0.0.1:8000/api/series/').then(response => setSeries(response.data));
+    axios.get('http://127.0.0.1:8000/api/rodeo/').then(response => setRodeos(response.data));
+    axios.get('http://127.0.0.1:8000/api/contestants/').then(response => setContestants(response.data));
+    axios.get('http://127.0.0.1:8000/api/events/').then(response => setEvents(response.data));
   }, []);
 
   const handleChange = (e) => {
@@ -38,7 +38,7 @@ const RodeoForm = () => {
     e.preventDefault();
 
     // Submit the form data to the backend
-    axios.post('/api/contest-events/', formData)
+    axios.post('http://127.0.0.1:8000/api/contest-events/', formData)
       .then(response => {
         alert('Data submitted successfully');
       })
