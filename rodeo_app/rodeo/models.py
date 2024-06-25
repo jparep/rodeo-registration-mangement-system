@@ -19,7 +19,7 @@ class ContestRodeoSeries(models.Model):
         unique_together = ('contestant', 'rodeo', 'series')
 
 class Event(models.Model):
-    event = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    event = models.CharField(max_length=10, primary_key=True, editable=False)
     event_name = models.CharField(max_length=50)
     is_timed = models.BooleanField()
 

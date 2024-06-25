@@ -50,3 +50,6 @@ static/
 
 # System files
 Thumbs.db
+
+# Assets
+assets/
