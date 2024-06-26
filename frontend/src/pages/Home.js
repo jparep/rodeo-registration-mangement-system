@@ -19,11 +19,6 @@ const Home = () => {
     <div>
       <h1>Welcome to the Rodeo Registration System</h1>
       <RodeoForm />
-      <ul>
-        {data.map(item => (
-          <li key={item.id}>{item.series_name}</li>
-        ))}
-      </ul>
     </div>
   );
 };

@@ -51,5 +51,9 @@ static/
 # System files
 Thumbs.db
 
-# Assets
+# Tailwind CSS generated files
+public/tailwind.css
+src/assets/styles/tailwind.css
+
+# Assets (if you have any large files or temporary files)
 assets/

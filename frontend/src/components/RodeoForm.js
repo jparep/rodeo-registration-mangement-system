@@ -19,7 +19,6 @@ const RodeoForm = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    // Fetch existing data for dropdowns
     axios.get('http://127.0.0.1:8000/api/series/').then(response => setSeries(response.data));
     axios.get('http://127.0.0.1:8000/api/rodeo/').then(response => setRodeos(response.data));
     axios.get('http://127.0.0.1:8000/api/contestants/').then(response => setContestants(response.data));
@@ -50,8 +49,6 @@ const RodeoForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Submit the form data to the backend
     axios.post('http://127.0.0.1:8000/api/contest-events/', formData)
       .then(response => {
         alert('Data submitted successfully');
@@ -63,76 +60,126 @@ const RodeoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Series:
-        <select name="series_name" value={formData.series_name} onChange={handleChange}>
+    <form onSubmit={handleSubmit} className="p-4">
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700">Series</label>
+        <select
+          name="series_name"
+          value={formData.series_name}
+          onChange={handleChange}
+          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
           <option value="">Select Series</option>
           {series.map(s => (
             <option key={s.id} value={s.series_name}>{s.series_name}</option>
           ))}
         </select>
-      </label>
-      <label>
-        Rodeo:
-        <select name="rodeo_name" value={formData.rodeo_name} onChange={handleChange}>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700">Rodeo</label>
+        <select
+          name="rodeo_name"
+          value={formData.rodeo_name}
+          onChange={handleChange}
+          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
           <option value="">Select Rodeo</option>
           {rodeos.map(r => (
             <option key={r.id} value={r.rodeo_name}>{r.rodeo_name}</option>
           ))}
         </select>
-      </label>
-      <label>
-        Contestant:
-        <select name="contestant_name" value={formData.contestant_name} onChange={handleChange}>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700">Contestant</label>
+        <select
+          name="contestant_name"
+          value={formData.contestant_name}
+          onChange={handleChange}
+          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
           <option value="">Select Contestant</option>
           {contestants.map(c => (
             <option key={c.id} value={c.contestant_name}>{c.contestant_name}</option>
           ))}
         </select>
-      </label>
-      <fieldset>
-        <legend>Events:</legend>
+      </div>
+
+      <fieldset className="mb-4">
+        <legend className="block text-sm font-medium text-gray-700">Events</legend>
         {events.map(e => (
-          <label key={e.event}>
+          <div key={e.event} className="flex items-center">
             <input
               type="checkbox"
               name="event_names"
               value={e.event_name}
               checked={formData.event_names.includes(e.event_name)}
               onChange={handleChange}
+              className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
             />
-            {e.event_name}
-          </label>
+            <label htmlFor="event_names" className="ml-3 text-sm text-gray-600">{e.event_name}</label>
+          </div>
         ))}
       </fieldset>
-      <label>
-        Timed Event:
-        <input type="checkbox" name="is_timed" checked={formData.is_timed} onChange={handleChange} />
-      </label>
-      <label>
-        Partner One:
-        <select name="partner_one" value={formData.partner_one} onChange={handleChange}>
+
+      <div className="mb-4">
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            name="is_timed"
+            checked={formData.is_timed}
+            onChange={handleChange}
+            className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+          />
+          <label htmlFor="is_timed" className="ml-3 text-sm text-gray-600">Timed Event</label>
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700">Partner One</label>
+        <select
+          name="partner_one"
+          value={formData.partner_one}
+          onChange={handleChange}
+          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
           <option value="">Select Partner One</option>
           {contestants.map(c => (
             <option key={c.id} value={c.contestant_name}>{c.contestant_name}</option>
           ))}
         </select>
-      </label>
-      <label>
-        Partner Two:
-        <select name="partner_two" value={formData.partner_two} onChange={handleChange}>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700">Partner Two</label>
+        <select
+          name="partner_two"
+          value={formData.partner_two}
+          onChange={handleChange}
+          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
           <option value="">Select Partner Two</option>
           {contestants.map(c => (
             <option key={c.id} value={c.contestant_name}>{c.contestant_name}</option>
           ))}
         </select>
-      </label>
-      <label>
-        Men's Breakaway Number:
-        <input type="number" name="mb_number" value={formData.mb_number} onChange={handleChange} />
-      </label>
-      <button type="submit">Submit</button>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700">Men's Breakaway Number</label>
+        <input
+          type="number"
+          name="mb_number"
+          value={formData.mb_number}
+          onChange={handleChange}
+          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        />
+      </div>
+
+      <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Submit
+      </button>
     </form>
   );
 };

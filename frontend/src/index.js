@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './assets/styles/tailwind.css';  // Import Tailwind CSS
+import './assets/styles/base.css';
+import './assets/styles/components.css';
+import './assets/styles/custom.css';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
