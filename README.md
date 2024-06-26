@@ -1,4 +1,4 @@
-# Rodeo Registration System
+# Rodeo Registration Management System
 
 The Rodeo Registration System is a web application designed to manage rodeo series, rodeo events, and contestant registrations efficiently. This application is built using Django for the backend and is designed with a focus on maintainability, scalability, and user-friendliness.
 
