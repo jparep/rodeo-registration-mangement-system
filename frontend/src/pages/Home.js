@@ -16,9 +16,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Welcome to the Rodeo Registration System</h1>
-      <RodeoForm />
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold text-gray-800 mb-8">Welcome to the Rodeo Registration System</h1>
+      <div className="w-full max-w-2xl">
+        <RodeoForm />
+      </div>
     </div>
   );
 };

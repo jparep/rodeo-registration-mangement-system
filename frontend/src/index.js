@@ -4,10 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './assets/styles/tailwind.css';  // Import Tailwind CSS
-import './assets/styles/base.css';
-import './assets/styles/components.css';
-import './assets/styles/custom.css';
-
+import './assets/styles/base.css';       // Import base styles (optional, if you have specific base styles)
+import './assets/styles/components.css'; // Import component styles
+import './assets/styles/custom.css';     // Import custom styles
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
