@@ -2,13 +2,13 @@ from django.db import models
 import uuid
 
 class Series(models.Model):
-    series_name = models.CharField(max_length=50)
+    series_name = models.CharField(max_length=50, unique=True)
 
 class Rodeo(models.Model):
     rodeo_name = models.CharField(max_length=50)
 
 class Contestant(models.Model):
-    contestant_name = models.CharField(max_length=100)
+    contestant_name = models.CharField(max_length=100,  db_index=True)
 
 class ContestRodeoSeries(models.Model):
     contestant = models.ForeignKey(Contestant, on_delete=models.CASCADE)
@@ -20,7 +20,7 @@ class ContestRodeoSeries(models.Model):
 
 class Event(models.Model):
     event = models.CharField(max_length=10, primary_key=True, editable=False)
-    event_name = models.CharField(max_length=50)
+    event_name = models.CharField(max_length=50, unique=True)
     is_timed = models.BooleanField()
 
 class ContestEvent(models.Model):
