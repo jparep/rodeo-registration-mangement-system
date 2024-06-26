@@ -6,7 +6,7 @@ const RodeoForm = () => {
     series_name: '',
     rodeo_name: '',
     contestant_name: '',
-    event_name: '',
+    event_names: [],
     is_timed: false,
     partner_one: '',
     partner_two: '',
@@ -28,10 +28,24 @@ const RodeoForm = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value
-    });
+    if (name === 'event_names') {
+      if (checked) {
+        setFormData({
+          ...formData,
+          event_names: [...formData.event_names, value]
+        });
+      } else {
+        setFormData({
+          ...formData,
+          event_names: formData.event_names.filter(event => event !== value)
+        });
+      }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: type === 'checkbox' ? checked : value
+      });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -77,15 +91,21 @@ const RodeoForm = () => {
           ))}
         </select>
       </label>
-      <label>
-        Event:
-        <select name="event_name" value={formData.event_name} onChange={handleChange}>
-          <option value="">Select Event</option>
-          {events.map(e => (
-            <option key={e.event} value={e.event_name}>{e.event_name}</option>
-          ))}
-        </select>
-      </label>
+      <fieldset>
+        <legend>Events:</legend>
+        {events.map(e => (
+          <label key={e.event}>
+            <input
+              type="checkbox"
+              name="event_names"
+              value={e.event_name}
+              checked={formData.event_names.includes(e.event_name)}
+              onChange={handleChange}
+            />
+            {e.event_name}
+          </label>
+        ))}
+      </fieldset>
       <label>
         Timed Event:
         <input type="checkbox" name="is_timed" checked={formData.is_timed} onChange={handleChange} />
